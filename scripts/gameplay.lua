@@ -1160,7 +1160,7 @@ function drawTrackInfo(deltaTime)
 
 	-- TRACK DIFFICULTY
 	local customdiff = gameplay.difficulty;
-	local songPath = string.sub(gameplay.jacketPath, string.len(gameplay.jacketPath)-6, string.len(gameplay.jacketPath));
+	local songPath = string.sub(gameplay.jacketPath, string.len(gameplay.jacketPath)-6, string.len(gameplay.jacketPath)) .. string.sub(gameplay.chartPath, string.len(gameplay.chartPath)-7, string.len(gameplay.chartPath));
 	if gameplay.difficulty == 3 then
 		if string.find(songPath, "inf") ~= nil then
 			customdiff = 4;

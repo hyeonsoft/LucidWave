@@ -75,7 +75,7 @@ function render_screen()
 	local dW, dH = gfx.ImageSize(difficulties[1])
 
 	local customdiff = song.difficulty;
-	local songPath = string.sub(song.jacketPath, string.len(song.jacketPath)-6, string.len(song.jacketPath));
+	local songPath = string.sub(song.jacketPath, string.len(song.jacketPath)-6, string.len(song.jacketPath)) .. string.sub(song.chartPath, string.len(song.chartPath)-7, string.len(song.chartPath));
 	if song.difficulty == 3 then
 		if string.find(songPath, "inf") ~= nil then
 			customdiff = 4;

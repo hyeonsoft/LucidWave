@@ -320,10 +320,8 @@ SongData.render = function(this, deltaTime)
   if (diff == nil) then
     diff = song.difficulties[1];
   end
-
-
-    local diffPath = string.sub(diff.jacketPath, string.len(diff.jacketPath)-6, string.len(diff.jacketPath));
     if diff.difficulty == 3 then
+        local diffPath = string.sub(diff.jacketPath, string.len(diff.jacketPath)-6, string.len(diff.jacketPath)) .. string.sub(diff.chartPath, string.len(diff.chartPath)-7, string.len(diff.chartPath));
         if string.find(diffPath, "inf") ~= nil then
         diff.difficulty = 4;
         end
@@ -996,33 +994,35 @@ songs_changed = function(withAll)
     for j = 1, #song.difficulties do
       local diff = song.difficulties[j];
 
-    local diffPath = string.sub(diff.jacketPath, string.len(diff.jacketPath)-6, string.len(diff.jacketPath));
-    if diff.difficulty == 3 then
-        if string.find(diffPath, "inf") ~= nil then
-        diff.difficulty = 4;
+        if diff.difficulty == 3 then
+    
+            local diffPath = string.sub(diff.jacketPath, string.len(diff.jacketPath)-6, string.len(diff.jacketPath)) .. string.sub(diff.chartPath, string.len(diff.chartPath)-7, string.len(diff.chartPath));
+
+            if string.find(diffPath, "inf") ~= nil then
+            diff.difficulty = 4;
+            end
+            if string.find(diffPath, "grv") ~= nil then
+            diff.difficulty = 5;
+            end
+            if string.find(diffPath, "hvn") ~= nil then
+            diff.difficulty = 6;
+            end
+            if string.find(diffPath, "vvd") ~= nil  then
+            diff.difficulty = 7;
+            end
+            if string.find(diffPath, "INF") ~= nil then
+            diff.difficulty = 4;
+            end
+            if string.find(diffPath, "GRV") ~= nil then
+            diff.difficulty = 5;
+            end
+            if string.find(diffPath, "HVN") ~= nil then
+            diff.difficulty = 6;
+            end
+            if string.find(diffPath, "VVD") ~= nil  then
+            diff.difficulty = 7;
+            end
         end
-        if string.find(diffPath, "grv") ~= nil then
-        diff.difficulty = 5;
-        end
-        if string.find(diffPath, "hvn") ~= nil then
-        diff.difficulty = 6;
-        end
-        if string.find(diffPath, "vvd") ~= nil  then
-        diff.difficulty = 7;
-        end
-        if string.find(diffPath, "INF") ~= nil then
-        diff.difficulty = 4;
-        end
-        if string.find(diffPath, "GRV") ~= nil then
-        diff.difficulty = 5;
-        end
-        if string.find(diffPath, "HVN") ~= nil then
-        diff.difficulty = 6;
-        end
-        if string.find(diffPath, "VVD") ~= nil  then
-        diff.difficulty = 7;
-        end
-    end
 
       diff.force = calculateForce(diff);
       table.insert(diffs, diff);

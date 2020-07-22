@@ -337,7 +337,7 @@ Results.render = function(this, showStats);
     end
 
     local customdiff = result.difficulty;
-	local songPath = string.sub(result.jacketPath, string.len(result.jacketPath)-6, string.len(result.jacketPath));
+	local songPath = string.sub(result.jacketPath, string.len(result.jacketPath)-6, string.len(result.jacketPath)) .. string.sub(result.chartPath, string.len(result.chartPath)-7, string.len(result.chartPath));
 	if result.difficulty == 3 then
 		if string.find(songPath, "inf") ~= nil then
 			customdiff = 4;
