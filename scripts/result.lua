@@ -239,6 +239,7 @@ Results.drawMetrics = function(this, metrics)
 end
 
 Results.render = function(this, showStats);
+--[[
   if (result.badge > 1) and (not played) then
     game.PlaySample('result', true);
     played = true;
@@ -247,7 +248,7 @@ Results.render = function(this, showStats);
   if (game.GetButton(game.BUTTON_STA) or game.GetButton(game.BUTTON_BCK)) then
     game.StopSample('result');
   end
-
+--]]
   if (portrait) then
     this.images.backgroundPT:draw({
       x = desw / 2,

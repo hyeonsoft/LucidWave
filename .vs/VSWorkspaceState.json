@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\scripts",
+    "\\scripts\\songselect",
+    "\\textures",
+    "\\textures\\song_select",
+    "\\textures\\song_select\\difficulties",
+    "\\textures\\song_select\\grades"
+  ],
+  "SelectedNode": "\\scripts\\songselect\\songwheel.lua",
+  "PreviewInSolutionExplorer": false
+}

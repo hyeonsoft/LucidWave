@@ -103,6 +103,8 @@ findDifficulty = function(diffs, diff)
   for i, v in ipairs(diffs) do
     if ((v.difficulty + 1) == diff) then
       diffIndex = i;
+    elseif ((v.difficulty + 1) > 4) and (i == 4) then
+      diffIndex = i;
     end
   end
 
@@ -156,7 +158,11 @@ SongData.new = function(jacketCache)
         Image.new('song_select/difficulties/novice.png'),
         Image.new('song_select/difficulties/advanced.png'),
         Image.new('song_select/difficulties/exhaust.png'),
-        Image.new('song_select/difficulties/maximum.png')
+        Image.new('song_select/difficulties/maximum.png'),
+        Image.new('song_select/difficulties/infinite.png'),
+        Image.new('song_select/difficulties/gravity.png'),
+        Image.new('song_select/difficulties/heavenly.png'),
+        Image.new('song_select/difficulties/vivid.png')
       }
     }
   };
@@ -311,6 +317,36 @@ SongData.render = function(this, deltaTime)
   if (diff == nil) then
     diff = song.difficulties[1];
   end
+
+
+    local diffPath = string.sub(diff.jacketPath, string.len(diff.jacketPath)-6, string.len(diff.jacketPath));
+    if diff.difficulty == 3 then
+        if string.find(diffPath, "inf") ~= nil then
+        diff.difficulty = 4;
+        end
+        if string.find(diffPath, "grv") ~= nil then
+        diff.difficulty = 5;
+        end
+        if string.find(diffPath, "hvn") ~= nil then
+        diff.difficulty = 6;
+        end
+        if string.find(diffPath, "vvd") ~= nil  then
+        diff.difficulty = 7;
+        end
+        if string.find(diffPath, "INF") ~= nil then
+        diff.difficulty = 4;
+        end
+        if string.find(diffPath, "GRV") ~= nil then
+        diff.difficulty = 5;
+        end
+        if string.find(diffPath, "HVN") ~= nil then
+        diff.difficulty = 6;
+        end
+        if string.find(diffPath, "VVD") ~= nil  then
+        diff.difficulty = 7;
+        end
+    end
+
 
   if (portrait) then
     this.images.songPanelPT:draw({ 
@@ -473,7 +509,11 @@ SongTable.new = function(jacketCache)
         Image.new('song_select/plates/novice.png'),
         Image.new('song_select/plates/advanced.png'),
         Image.new('song_select/plates/exhaust.png'),
-        Image.new('song_select/plates/maximum.png')
+        Image.new('song_select/plates/maximum.png'),
+        Image.new('song_select/plates/infinite.png'),
+        Image.new('song_select/plates/gravity.png'),
+        Image.new('song_select/plates/heavenly.png'),
+        Image.new('song_select/plates/vivid.png')
       }
     }
   };
@@ -952,7 +992,35 @@ songs_changed = function(withAll)
     
     for j = 1, #song.difficulties do
       local diff = song.difficulties[j];
-      
+--[[
+    local diffPath = string.sub(diff.jacketPath, string.len(diff.jacketPath)-6, string.len(diff.jacketPath));
+    if diff.difficulty == 3 then
+        if string.find(diffPath, "inf") ~= nil then
+        diff.difficulty = 4;
+        end
+        if string.find(diffPath, "grv") ~= nil then
+        diff.difficulty = 5;
+        end
+        if string.find(diffPath, "hvn") ~= nil then
+        diff.difficulty = 6;
+        end
+        if string.find(diffPath, "vvd") ~= nil  then
+        diff.difficulty = 7;
+        end
+        if string.find(diffPath, "INF") ~= nil then
+        diff.difficulty = 4;
+        end
+        if string.find(diffPath, "GRV") ~= nil then
+        diff.difficulty = 5;
+        end
+        if string.find(diffPath, "HVN") ~= nil then
+        diff.difficulty = 6;
+        end
+        if string.find(diffPath, "VVD") ~= nil  then
+        diff.difficulty = 7;
+        end
+    end
+--]]
       diff.force = calculateForce(diff);
       table.insert(diffs, diff);
       diffsById[diff.id] = diff;
