@@ -103,7 +103,7 @@ findDifficulty = function(diffs, diff)
   for i, v in ipairs(diffs) do
     if ((v.difficulty + 1) == diff) then
       diffIndex = i;
-    elseif ((v.difficulty + 1) > 4) and (i == 4) then
+    elseif ((v.difficulty + 1) > 4) and (diff == 4) then
       diffIndex = i;
     end
   end
@@ -298,6 +298,9 @@ SongData.drawDifficulty = function(this, index, diff, jacket)
 end
 
 SongData.drawCursor = function(this, index)
+  if (index > 3) then
+    index = 3;
+  end
   this.images.cursor:draw({
     x = (portrait and (332 + (index * 82))) or (160 + (index * 82)),
     y = (portrait and 256) or 559,
@@ -992,7 +995,7 @@ songs_changed = function(withAll)
     
     for j = 1, #song.difficulties do
       local diff = song.difficulties[j];
---[[
+
     local diffPath = string.sub(diff.jacketPath, string.len(diff.jacketPath)-6, string.len(diff.jacketPath));
     if diff.difficulty == 3 then
         if string.find(diffPath, "inf") ~= nil then
@@ -1020,7 +1023,7 @@ songs_changed = function(withAll)
         diff.difficulty = 7;
         end
     end
---]]
+
       diff.force = calculateForce(diff);
       table.insert(diffs, diff);
       diffsById[diff.id] = diff;

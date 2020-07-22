@@ -3,11 +3,8 @@
     "",
     "\\scripts",
     "\\scripts\\songselect",
-    "\\textures",
-    "\\textures\\song_select",
-    "\\textures\\song_select\\difficulties",
-    "\\textures\\song_select\\grades"
+    "\\textures"
   ],
-  "SelectedNode": "\\scripts\\songselect\\songwheel.lua",
+  "SelectedNode": "\\scripts\\songtransition.lua",
   "PreviewInSolutionExplorer": false
 }

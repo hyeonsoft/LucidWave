@@ -44,7 +44,11 @@ local difficulties = {
     gfx.CreateSkinImage("song_transition/difficulties/novice.png", 0),
     gfx.CreateSkinImage("song_transition/difficulties/advanced.png", 0),
     gfx.CreateSkinImage("song_transition/difficulties/exhaust.png", 0),
-    gfx.CreateSkinImage("song_transition/difficulties/maximum.png", 0)
+    gfx.CreateSkinImage("song_transition/difficulties/maximum.png", 0),
+    gfx.CreateSkinImage("song_transition/difficulties/infinite.png", 0),
+    gfx.CreateSkinImage("song_transition/difficulties/gravity.png", 0),
+    gfx.CreateSkinImage("song_transition/difficulties/heavenly.png", 0),
+    gfx.CreateSkinImage("song_transition/difficulties/vivid.png", 0)
 }
 
 local stripesLightPortrait = gfx.CreateSkinImage("song_transition/stripes_light_p.png", 0)
@@ -69,6 +73,37 @@ function render_screen()
 	local illustrator = gfx.CreateLabel(song.illustrator, math.floor(18 * scale), 0)
 
 	local dW, dH = gfx.ImageSize(difficulties[1])
+
+	local customdiff = song.difficulty;
+	local songPath = string.sub(song.jacketPath, string.len(song.jacketPath)-6, string.len(song.jacketPath));
+	if song.difficulty == 3 then
+		if string.find(songPath, "inf") ~= nil then
+			customdiff = 4;
+		end
+		if string.find(songPath, "grv") ~= nil then
+			customdiff = 5;
+		end
+		if string.find(songPath, "hvn") ~= nil then
+			customdiff = 6;
+		end
+		if string.find(songPath, "vvd") ~= nil  then
+			customdiff = 7;
+		end
+		if string.find(songPath, "INF") ~= nil then
+			customdiff = 4;
+		end
+		if string.find(songPath, "GRV") ~= nil then
+			customdiff = 5;
+		end
+		if string.find(songPath, "HVN") ~= nil then
+			customdiff = 6;
+		end
+		if string.find(songPath, "VVD") ~= nil then
+			customdiff = 7;
+		end
+	end
+	--game.Log(gameplay.jacketPath, game.LOGGER_ERROR); usc should be updated to support things : songtransition.lua needs jacketPath.
+	--This option works only with https://github.com/hyeonsoft/unnamed-sdvx-clone origin/feat/newVariablesInLua
 
 	if portrait then
 		if not played then
@@ -150,8 +185,11 @@ function render_screen()
 
 		gfx.FillColor(255, 255, 255)
 
+
+		
+
 		gfx.BeginPath()
-		gfx.ImageRect(194 * scale, (40 - animTimer * 100) * scale, (dW * 0.35) * scale, (dH * 0.35) * scale, difficulties[song.difficulty + 1], animTimer, 0) --55
+		gfx.ImageRect(194 * scale, (40 - animTimer * 100) * scale, (dW * 0.35) * scale, (dH * 0.35) * scale, difficulties[customdiff + 1], animTimer, 0) --55
 
 		gfx.BeginPath()
 		gfx.ImageRect(jBgX, jBgY, jBgW, jBgH, jacketBorder, animTimer, 0)
@@ -299,7 +337,7 @@ function render_screen()
 		gfx.FillColor(255, 255, 255)
 
 		gfx.BeginPath()
-		gfx.ImageRect(152 * scale, (92 - animTimer * 100) * scale, (dW * 0.35) * scale, (dH * 0.35) * scale, difficulties[song.difficulty + 1], animTimer, 0)
+		gfx.ImageRect(152 * scale, (92 - animTimer * 100) * scale, (dW * 0.35) * scale, (dH * 0.35) * scale, difficulties[customdiff + 1], animTimer, 0)
 
 		gfx.BeginPath()
 		gfx.ImageRect(jBgX, jBgY, jBgW, jBgH, jacketBorder, animTimer, 0)
