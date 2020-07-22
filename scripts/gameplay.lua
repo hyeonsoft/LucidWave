@@ -1088,7 +1088,11 @@ local difficulties = {
 	gfx.CreateSkinImage("gameplay/track_info/difficulties/novice.png", 0),
 	gfx.CreateSkinImage("gameplay/track_info/difficulties/advanced.png", 0),
 	gfx.CreateSkinImage("gameplay/track_info/difficulties/exhaust.png", 0),
-	gfx.CreateSkinImage("gameplay/track_info/difficulties/maximum.png", 0)
+	gfx.CreateSkinImage("gameplay/track_info/difficulties/maximum.png", 0),
+	gfx.CreateSkinImage("gameplay/track_info/difficulties/infinite.png", 0),
+	gfx.CreateSkinImage("gameplay/track_info/difficulties/gravity.png", 0),
+	gfx.CreateSkinImage("gameplay/track_info/difficulties/heavenly.png", 0),
+	gfx.CreateSkinImage("gameplay/track_info/difficulties/vivid.png", 0)
 }
 
 local userBack = gfx.CreateSkinImage("gameplay/user_panel/user_panel_back.png", 0)
@@ -1155,9 +1159,37 @@ function drawTrackInfo(deltaTime)
 	end
 
 	-- TRACK DIFFICULTY
+	local customdiff = gameplay.difficulty;
+	local songPath = string.sub(gameplay.jacketPath, string.len(gameplay.jacketPath)-6, string.len(gameplay.jacketPath));
+	if gameplay.difficulty == 3 then
+		if string.find(songPath, "inf") ~= nil then
+			customdiff = 4;
+		end
+		if string.find(songPath, "grv") ~= nil then
+			customdiff = 5;
+		end
+		if string.find(songPath, "hvn") ~= nil then
+			customdiff = 6;
+		end
+		if string.find(songPath, "vvd") ~= nil  then
+			customdiff = 7;
+		end
+		if string.find(songPath, "INF") ~= nil then
+			customdiff = 4;
+		end
+		if string.find(songPath, "GRV") ~= nil then
+			customdiff = 5;
+		end
+		if string.find(songPath, "HVN") ~= nil then
+			customdiff = 6;
+		end
+		if string.find(songPath, "VVD") ~= nil then
+			customdiff = 7;
+		end
+	end
 	gfx.BeginPath()
 	gfx.FillColor(255, 255, 255)
-	gfx.ImageRect(0, -19, 250, 133, difficulties[gameplay.difficulty + 1], 1, 0)
+	gfx.ImageRect(0, -19, 250, 133, difficulties[customdiff + 1], 1, 0)
 
 	-- TRACK DIFFICULTY LEVEL
 	gfx.BeginPath()
