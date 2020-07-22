@@ -1,3 +1,11 @@
+This is unstable, and this only works with usc here:
+https://github.com/hyeonsoft/unnamed-sdvx-clone/tree/origin/feat/newVariablesInLua
+
+Known Issues : 
+
+- It shows Maximum Difficulty layer for inf~vvd charts when it first loaded.
+
+--------------------------------------------------------------------------------
 
 LucidWave - A SOUND VOLTEX VIVID WAVE inspired skin for Unnamed SDVX clone
 
